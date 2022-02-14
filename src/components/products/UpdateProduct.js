@@ -1,45 +1,43 @@
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { Brands } from "./brands";
-import { Nav } from "./nav";
+import { Brands } from "../brands/brands";
+import { Nav } from "../misc/nav";
 
-export function AddProduct() {
-
-
+export function UpdateProduct({ product }) {
     const navigate = useNavigate();
 
     const getValidate = (values) => {
         const errors = {};
-        if (!values.name){
+        if (!values.name) {
             errors.name = "Required";
         }
         return errors;
-    }
+    };
 
     const getSubmit = (values) => {
-        fetch("https://6170424123781c001728996d.mockapi.io/products", {
-            method: "POST",
+        fetch("http://127.0.0.1:5000/products/" + product._id, {
+            method: "PUT",
             body: JSON.stringify(values),
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(() => navigate("/"))
-    }
+        }).then(() => navigate("/"));
+    };
 
     const formik = useFormik({
-        initialValues: { 
-            name: "",
-            image: "",
-            brand: "",
-            price: "",
-            release: ""
+        initialValues: {
+            name: product.name,
+            image: product.image,
+            brand: product.brand,
+            price: product.price,
+            release: product.release
         },
         validate: getValidate,
         onSubmit: getSubmit
-    })
+    });
 
     return (
-        <div>
+        <>
             <div><Nav /></div>
             <div className="home-container">
                 <Brands />
@@ -55,6 +53,6 @@ export function AddProduct() {
                     </form>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

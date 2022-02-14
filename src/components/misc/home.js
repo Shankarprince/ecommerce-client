@@ -1,5 +1,5 @@
-import { Brands } from './brands.js';
-import { Products } from "./products.js";
+import { Brands } from "../brands/brands.js";
+import { Products } from "../products/products.js";
 import { Nav } from './nav.js';
 
 export function Home() {

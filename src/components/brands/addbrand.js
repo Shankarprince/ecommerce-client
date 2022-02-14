@@ -1,10 +1,9 @@
 import { Brands } from './brands.js';
-import { Nav } from './nav.js';
+import { Nav } from '../misc/nav.js';
 import { useFormik } from "formik";
 import { useNavigate } from 'react-router-dom';
 
 export function AddBrand() {
-
     const navigate = useNavigate();
 
     const getValidate = (values) => {
@@ -12,9 +11,8 @@ export function AddBrand() {
         if (!values.name) errors.name = "Required";
         return errors;
     }
-
     const getSubmit = (values) => {
-        fetch("https://6170424123781c001728996d.mockapi.io/brands", {
+        fetch("http://127.0.0.1:5000/brands", {
             method: "POST",
             body: JSON.stringify(values),
             headers: {
@@ -22,7 +20,6 @@ export function AddBrand() {
             }
         }).then(() => navigate("/"))
     }
-
     const formik = useFormik({
         initialValues: { name: "" },
         validate: getValidate,

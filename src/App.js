@@ -1,11 +1,11 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./components/home.js";
-import { AddBrand } from './components/addbrand';
-import { EditBrand } from './components/editBrand';
-import { BrandProducts } from './components/brandProducts';
-import { AddProduct } from './components/addProduct';
-import { EditProduct } from './components/editProduct';
+import { Home } from "./components/misc/home.js";
+import { AddBrand } from './components/brands/addbrand';
+import { EditBrand } from './components/brands/editBrand';
+import { BrandProducts } from './components/brands/brandProducts';
+import { AddProduct } from './components/products/addProduct';
+import { EditProduct } from './components/products/editProduct';
 
 
 export function App() {

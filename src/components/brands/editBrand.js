@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Brands } from "./brands";
-import { Nav } from "./nav";
+import { Nav } from "../misc/nav";
 
 export function EditBrand() {
 
@@ -10,7 +10,7 @@ export function EditBrand() {
     const [brand, setBrand] = useState(null);
 
     const getData = () => {
-        fetch("https://6170424123781c001728996d.mockapi.io/brands/" + id)
+        fetch("http://127.0.0.1:5000/brands/" + id)
             .then((response) => response.json())
             .then(dt => setBrand(dt))
     }
@@ -33,7 +33,7 @@ function UpdateBrand({ brand }) {
             name: name
         }
 
-        fetch("https://6170424123781c001728996d.mockapi.io/brands/" + brand.id, {
+        fetch("http://127.0.0.1:5000/brands/" + brand._id, {
             method: "PUT",
             body: JSON.stringify(updatedMovie),
             headers: {

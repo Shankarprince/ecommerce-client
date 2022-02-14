@@ -1,41 +1,22 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Brands } from "./brands";
-import { Nav } from "./nav";
+import { useNavigate } from "react-router-dom";
+import { Brands } from "../brands/brands";
+import { Nav } from "../misc/nav";
 
-export function EditProduct() {
-
-    const { id } = useParams();
-    const [product, setProduct] = useState(null);
-
-    const getBrands = () => {
-        fetch("https://6170424123781c001728996d.mockapi.io/products/" + id)
-            .then((response) => response.json())
-            .then(dt => setProduct(dt))
-    }
-
-    useEffect(getBrands, [id]);
-
-    return (
-        product ? <UpdateProduct product={product} /> : ""
-    );
-}
-
-function UpdateProduct({ product }) {
+export function AddProduct() {
     const navigate = useNavigate();
-    
+
     const getValidate = (values) => {
         const errors = {};
-        if (!values.name) {
+        if (!values.name){
             errors.name = "Required";
         }
         return errors;
     }
 
     const getSubmit = (values) => {
-        fetch("https://6170424123781c001728996d.mockapi.io/products/" + product.id, {
-            method: "PUT",
+        fetch("http://127.0.0.1:5000/products", {
+            method: "POST",
             body: JSON.stringify(values),
             headers: {
                 "Content-Type": "application/json"
@@ -44,19 +25,19 @@ function UpdateProduct({ product }) {
     }
 
     const formik = useFormik({
-        initialValues: {
-            name: product.name,
-            image: product.image,
-            brand: product.brand,
-            price: product.price,
-            release: product.release
+        initialValues: { 
+            name: "",
+            image: "",
+            brand: "",
+            price: "",
+            release: ""
         },
         validate: getValidate,
         onSubmit: getSubmit
     })
 
     return (
-        <>
+        <div>
             <div><Nav /></div>
             <div className="home-container">
                 <Brands />
@@ -72,6 +53,6 @@ function UpdateProduct({ product }) {
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
