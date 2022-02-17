@@ -7,14 +7,14 @@ export function Products() {
     const navigate = useNavigate();
 
     const getProducts = () => {
-        fetch("http://127.0.0.1:5000/products")
+        fetch("https://electrokart-backend.herokuapp.com/products")
             .then((response) => response.json())
             .then(dt => setProducts(dt))
     }
     useEffect(getProducts, []);
 
     const deleteProduct = (id) => {
-        fetch("http://127.0.0.1:5000/products/" + id, {
+        fetch("https://electrokart-backend.herokuapp.com/products/" + id, {
             method: "DELETE"
         })
             .then(getProducts)

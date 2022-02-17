@@ -7,7 +7,7 @@ export function Brands() {
     const [brands, setBrands] = useState([]);
 
     const getBrands = () => {
-        fetch("http://127.0.0.1:5000/brands")
+        fetch("https://electrokart-backend.herokuapp.com/brands")
             .then((response) => response.json())
             .then(dt => setBrands(dt))
     }
@@ -15,7 +15,7 @@ export function Brands() {
 
     const deleteBrand = (id) => {
         console.log(id);
-        fetch("http://127.0.0.1:5000/brands/" + id, {
+        fetch("https://electrokart-backend.herokuapp.com/brands/" + id, {
             method: "DELETE"
         })
         .then(getBrands)

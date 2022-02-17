@@ -15,7 +15,7 @@ export function UpdateProduct({ product }) {
     };
 
     const getSubmit = (values) => {
-        fetch("http://127.0.0.1:5000/products/" + product._id, {
+        fetch("https://electrokart-backend.herokuapp.com/products/" + product._id, {
             method: "PUT",
             body: JSON.stringify(values),
             headers: {

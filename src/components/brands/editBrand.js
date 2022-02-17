@@ -10,7 +10,7 @@ export function EditBrand() {
     const [brand, setBrand] = useState(null);
 
     const getData = () => {
-        fetch("http://127.0.0.1:5000/brands/" + id)
+        fetch("https://electrokart-backend.herokuapp.com/brands/" + id)
             .then((response) => response.json())
             .then(dt => setBrand(dt))
     }
@@ -33,7 +33,7 @@ function UpdateBrand({ brand }) {
             name: name
         }
 
-        fetch("http://127.0.0.1:5000/brands/" + brand._id, {
+        fetch("https://electrokart-backend.herokuapp.com/brands/" + brand._id, {
             method: "PUT",
             body: JSON.stringify(updatedMovie),
             headers: {

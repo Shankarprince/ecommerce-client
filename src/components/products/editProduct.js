@@ -7,7 +7,7 @@ export function EditProduct() {
     const [product, setProduct] = useState(null);
 
     const getBrands = () => {
-        fetch("http://127.0.0.1:5000/products/" + id)
+        fetch("https://electrokart-backend.herokuapp.com/products/" + id)
             .then((response) => response.json())
             .then(dt => setProduct(dt))
     }

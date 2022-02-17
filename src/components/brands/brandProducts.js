@@ -11,14 +11,14 @@ export function BrandProducts() {
     const [products, setProducts] = useState([]);
 
     const getBrands = () => {
-        fetch("http://127.0.0.1:5000/brands/" + id)
+        fetch("https://electrokart-backend.herokuapp.com/brands/" + id)
             .then((response) => response.json())
             .then(dt => setBrand(dt))
     }
     useEffect(getBrands, [id]);
 
     const getProducts = () => {
-        fetch("http://127.0.0.1:5000/products")
+        fetch("https://electrokart-backend.herokuapp.com/products")
             .then((response) => response.json())
             .then(dt => {
                 const filterData = dt.filter(data => data.brand === brand.name);
